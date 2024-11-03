@@ -2,13 +2,13 @@
   "luau-lsp.completion.autocompleteEnd": true,
   "luau-lsp.completion.imports.requireStyle": "alwaysRelative",
   "luau-lsp.require.directoryAliases": {
-    ".": "C:\\Users\\sacresful\\Documents\\Warsaw Revamped\\Package Cache"
+    ".": "C:\\Users\\usern\\Documents\\Warsaw Revamped\\Package Cache"
   },
   "luau-lsp.require.mode": "relativeToFile",
   "luau-lsp.types.definitionFiles": [
-    "C:\\Users\\sacresful\\Documents\\Warsaw Revamped\\Mod Toolkit\\API Definitions\\wr-core.d.luau",
-    "C:\\Users\\sacresful\\Documents\\Warsaw Revamped\\Mod Toolkit\\API Definitions\\wr-gen.d.luau",
-    "C:\\Users\\sacresful\\Documents\\Warsaw Revamped\\Mod Toolkit\\API Definitions\\wr-managers.d.luau"
+    "C:\\Users\\usern\\Documents\\Warsaw Revamped\\Mod Toolkit\\API Definitions\\wr-core.d.luau",
+    "C:\\Users\\usern\\Documents\\Warsaw Revamped\\Mod Toolkit\\API Definitions\\wr-gen.d.luau",
+    "C:\\Users\\usern\\Documents\\Warsaw Revamped\\Mod Toolkit\\API Definitions\\wr-managers.d.luau"
   ],
   "luau-lsp.platform.type": "standard",
   "luau-lsp.inlayHints.functionReturnTypes": true,

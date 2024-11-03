@@ -1,5 +1,7 @@
 --!strict
+require("Gadgets/SRAW")
 require("Weapons/AUG")
+require("Vehicles/Scout/Minigun")
 require("Vehicles/F35")
 require("Vehicles/JDAM")
 require("Vehicles/LB")

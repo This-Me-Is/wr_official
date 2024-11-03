@@ -12,7 +12,8 @@ local F35Blueprint = {
 
 function F35:OnVehicleBlueprintLoad(p_VehicleBlueprint: VehicleBlueprint)
     print("***** Found F35 Blueprint!!!")
-    local s_JetEngineConfigData = (((((p_VehicleBlueprint.object :: VehicleEntityData).components :: DataContainer)[1] :: ChassisComponentData).components :: DataContainer)[10] :: EngineComponentData).config :: JetEngineConfigData
+    local s_VehicleEntityData = p_VehicleBlueprint.object :: VehicleEntityData
+    local s_JetEngineConfigData = ((((s_VehicleEntityData.components :: DataContainer)[1] :: ChassisComponentData).components :: DataContainer)[10] :: EngineComponentData).config :: JetEngineConfigData
     print("***** Set JetEngineConfigData!!!")
     local s_Boost = s_JetEngineConfigData.boost :: Boost
     s_Boost.forwardStrength = 30.0

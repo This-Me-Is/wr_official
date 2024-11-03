@@ -6,23 +6,26 @@ local JDAM = {}
 print("Hello World!")
 
 local JDAMProjectileBlueprint = {
-  partitionGuid = Guid("C44CE6A9-8CF7-4D9E-8968-88C1895A7A72"),
-  instanceGuid = Guid("0D322435-5789-4B44-9A39-B8546E30670F")
+  partitionGuid = Guid("575E8F27-30DC-4A9C-81FC-A8C3634B8A30"),
+  instanceGuid = Guid("2EE31CD7-5494-4169-8715-27721D3EEAA9")
 }
 
-function JDAM:OnWeaponFiringDataAssetLoad(p_WeaponFiringDataAsset: WeaponFiringDataAsset)
-    print("***** Found JDAM Blueprint!!!")
-    local s_WeaponFiringData = p_WeaponFiringDataAsset.data :: WeaponFiringData
-    local s_FiringFunctionData = s_WeaponFiringData.primaryFire
-    local s_Ammo = s_FiringFunctionData.ammo
-    s_Ammo.magazineCapacity = 10
+function JDAM:OnVehicleBlueprintLoad(p_ProjectileBlueprint: ProjectileBlueprint)
+    print("* Found JDAM2 Blueprint!!!") 
+    local s_MissileEntityData = p_ProjectileBlueprint.object :: MissileEntityData
+    local s_VeniceExplosionEntityData = s_MissileEntityData.explosion
+    s_MissileEntityData.initialSpeed = 5000
+    s_VeniceExplosionEntityData.blastRadius = 500
+    s_VeniceExplosionEntityData.blastImpulse = 500
+    s_VeniceExplosionEntityData.shockwaveRadius = 500
+    s_VeniceExplosionEntityData.blastDamage = 200000
 end
 
 partitions.onInstanceLoad(
     JDAMProjectileBlueprint.partitionGuid,
     JDAMProjectileBlueprint.instanceGuid,
     JDAM,
-    JDAM.OnWeaponFiringDataAssetLoad
+    JDAM.OnVehicleBlueprintLoad
 )
 
 return nil
