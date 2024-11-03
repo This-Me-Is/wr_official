@@ -14,6 +14,7 @@ function Minigun:OnWeaponFiringDataAssetLoad(p_WeaponFiringDataAsset: WeaponFiri
     local s_WeaponFiringData = p_WeaponFiringDataAsset.data :: WeaponFiringData
     local s_FiringFunctionData = s_WeaponFiringData.primaryFire :: FiringFunctionData
 	local s_FireLogicData = s_FiringFunctionData.fireLogic :: FireLogicData
+	s_FireLogicData.rateOfFire = 6000
 	s_FireLogicData.reloadTime = 2.0
 	local s_RecoilData = s_FireLogicData.recoil :: RecoilData
 	s_RecoilData.maxRecoilAngleX = 0.0
