@@ -1,32 +1,45 @@
-local partitions = require("./partitions")
+local function config(partitionGuid,instanceGuid)
 
-local Tow = {}
+	local partitions = require("./partitions")
 
-print("Hello World!")
+	local TOW = {}
 
-local TowBlueprint = {
-  partitionGuid = Guid("8E341E03-FC52-42FF-BF60-0ECCE7641237"),
-  instanceGuid = Guid("0B7AC09F-E5EA-490B-B46A-FC18ADE468B6")
-}
+	print("TOW Module Loading...")
 
-function Tow:OnWeaponFiringDataAssetLoad(p_WeaponFiringDataAsset: WeaponFiringDataAsset)
-    print("***** Found Tow Blueprint!!!")
-    local s_WeaponFiringData = p_WeaponFiringDataAsset.data :: WeaponFiringData
-    local s_FiringFunctionData = s_WeaponFiringData.primaryFire
-    local s_Ammo = s_FiringFunctionData.ammo
-    local s_Shot = s_FiringFunctionData.shot
-    local s_ProjectileData = s_Shot.projectileData
-    s_ProjectileData.timeToLive = 0
-    s_Ammo.magazineCapacity = 8
-    s_Ammo.numberOfMagazines = 8
-    s_Shot.initialSpeed.z = 1000
+	function TOW:OnWeaponFiringDataAssetLoad(p_WeaponFiringDataAsset: WeaponFiringDataAsset)
+	    print("----> TOW Module Loaded")
+	    local s_Data = p_WeaponFiringDataAsset.data
+		s_Data.altDeployTime = 0.0
+		s_Data.deployTime = 0.0
+	    local s_PrimaryFire = s_Data.primaryFire
+	    local s_Shot = s_PrimaryFire.shot
+	    s_Shot.numberOfBulletsPerShell = 1
+	    s_Shot.numberOfBulletsPerShot = 1
+	    local s_ProjectileData = s_Shot.projectileData
+	    s_ProjectileData.initialSpeed = 500.0
+		s_ProjectileData.maxSpeed = 500.0
+	    s_ProjectileData.timeToLive = 0.0
+		local s_FireLogic = s_PrimaryFire.fireLogic
+		s_FireLogic.clientFireRateMultiplier = 2.0
+		s_FireLogic.rateOfFireForBurst = 600.0
+		s_FireLogic.rateOfFire = 600.0
+		s_FireLogic.reloadTime = 1.5
+	    local s_Ammo = s_PrimaryFire.ammo
+		s_Ammo.autoReplenishDelay = 8.0;
+	    s_Ammo.magazineCapacity = 8
+	    s_Ammo.numberOfMagazines = 4
+		s_Ammo.traceFrequency = 1
+	end
+
+	partitions.onInstanceLoad(
+	    Guid(partitionGuid),
+	    Guid(instanceGuid),
+	    TOW,
+	    TOW.OnWeaponFiringDataAssetLoad
+	)
+	return nil
 end
 
-partitions.onInstanceLoad(
-    TowBlueprint.partitionGuid,
-    TowBlueprint.instanceGuid,
-    Tow,
-    Tow.OnWeaponFiringDataAssetLoad
-)
-
-return nil
+return {
+	config = config
+}
