@@ -65,7 +65,7 @@ local function heli(partitionGuid,instanceGuid,pitch,roll,yaw,type)
 end
 
 local function scout(partitionGuid,instanceGuid,type) -- Scout
-	return heli(partitionGuid,instanceGuid,2.5,3,1.5,type)
+	return heli(partitionGuid,instanceGuid,2,3.5,1.5,type)
 end
 
 local function Z11(partitionGuid,instanceGuid)
