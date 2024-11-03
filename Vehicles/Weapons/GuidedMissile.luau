@@ -1,4 +1,4 @@
-local function missileConfig(partitionGuid,instanceGuid)
+local function config(partitionGuid,instanceGuid)
 
 	local partitions = require("./partitions")
 
@@ -41,5 +41,5 @@ local function missileConfig(partitionGuid,instanceGuid)
 end
 
 return {
-    missileConfig = missileConfig
+    config = config
 }
